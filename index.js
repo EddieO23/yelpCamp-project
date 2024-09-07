@@ -17,15 +17,11 @@ const app = express()
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
-app.get('/' , (require, res) => {
-  res.render('home') 
+app.get('/campgrounds' , async (require, res) => {
+  const campgrounds = await Campground.find({}) 
+  res.render('campgrounds/index', {campgrounds})
 })
 
-app.get('/makecampground', async (req, res) => {
-  const camp = new Campground({title: 'My backyard', description: 'cheap camping'})
-  await camp.save()
-  res.send(camp)
-})
 
 app.listen(3000, () => {
   console.log('Serving on port 3000')
