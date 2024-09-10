@@ -11,20 +11,25 @@ db.once("open", () => {
   console.log("Database connected");
 });
 
-const sample = array => array[Math.floor(Math.random() * array.length)];
+const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
   await Campground.deleteMany({});
   for (let i = 0; i < 50; i++) {
     const random1000 = Math.floor(Math.random() * 1000);
+    const price = Math.floor(Math.random() * 20) + 10;
     const camp = new Campground({
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
-      title: `${sample(descriptors)} ${sample(places)}`
+      title: `${sample(descriptors)} ${sample(places)}`,
+      image: `https://picsum.photos/400?random=${Math.random()}`,
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis distinctio error ipsam doloremque molestiae commodi cum neque dicta provident unde voluptate suscipit nisi, voluptas officia. Amet iste ex quae minus.",
+      price
     });
     await camp.save();
   }
 };
 
-seedDB().then(()=> {
-  mongoose.connection.close()
-})
+seedDB().then(() => {
+  mongoose.connection.close();
+});
