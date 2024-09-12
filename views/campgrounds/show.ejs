@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-6 offset-3">
-    <div class="card">
+    <div class="card mb-3">
       <img class="card-img-top" src="<%= campground.image  %>" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title"><%= campground.title  %></h5>
@@ -11,24 +11,19 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item text-muted"><%= campground.location  %></li>
         <li class="list-group-item">$<%= campground.price  %>/night</li>
-        <li class="list-group-item">Vestibulum at eros</li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <a class="card-link btn btn-info" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+        <form class="d-inline" action="/campgrounds/<%= campground._id  %>?_method=delete" method="POST">
+          <button class="btn btn-danger">Delete</button>
+          </form>
       </div>
+    </div>
+    <div class="card-footer text-muted">
+      2 days ago
+      <a href="/campgrounds">All campgrounds</a>
     </div>
   </div>
 </div>
 
-  <h1><%= campground.title  %></h1>
-  <h2><%= campground.location  %></h2>
-  <img src="<%= campground.image  %>" alt="">
-  <p><%= campground.description %></p>
-<form action="/campgrounds/<%= campground._id  %>?_method=delete" method="POST">
-<button>DELETE ME</button>
-</form>
-<footer>
-  <a href="/campgrounds/<%= campground._id %>/edit">Edit</a>
-  <a href="/campgrounds">All campgrounds</a>
-</footer>
+
