@@ -74,18 +74,24 @@ app.post(
 app.get(
   "/campgrounds/:id",
   catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id);
+    const campground = await Campground.findById(req.params.id).populate("reviews");
+    console.log(campground);
     res.render("campgrounds/show", { campground });
   })
 );
 
-app.get(
-  "/campgrounds/:id/edit",
-  catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id);
-    res.render("campgrounds/edit", { campground });
-  })
-);
+// app.get(
+//   "/campgrounds/:id/edit",
+//   catchAsync(async (req, res) => {
+//     const campground = await Campground.findById(req.params.id);
+//     res.render("campgrounds/edit", { campground });
+//   })
+// );
+
+app.get('/campgrounds/:id', catchAsync(async (req, res,) => {
+  const campground = await Campground.findById(req.params.id).populate('reviews');
+  res.render('campgrounds/show', { campground });
+}));
 // Update campground route
 app.put(
   "/campgrounds/:id",
@@ -109,7 +115,8 @@ app.delete(
 );
 
 app.post(
-  "/campgrounds/:id/reviews", validateReview,
+  "/campgrounds/:id/reviews",
+  validateReview,
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     const review = new Review(req.body.review);
