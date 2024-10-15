@@ -14,8 +14,11 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <%- include('../partials/navbar') %>
-    <main class="container mt-5"><%- body %></main>
+    <%- include('../partials/navbar')%>
+    <main class="container mt-5">
+        <%- include('../partials/flash')%>
+        <%- body %>
+    </main>
     <%- include('../partials/footer') %>
 
     <!-- Bootstrap script link -->
@@ -31,6 +34,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="/validateForms.js"></script>
+    <script src="/javascripts/validateForms.js"></script>
   </body>
 </html>
