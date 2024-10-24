@@ -40,6 +40,7 @@
     </div>
   </div>
   <div class="col-6">
+    <% if(currentUser) { %>
     <h2>Leave a review</h2>
     <!-- form section -->
     <form
@@ -81,6 +82,7 @@
         <form action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
           <button class="btn btn-sm btn-danger">Delete</button>
         </form>
+        <% } %>
       </div>
     </div>
     <% } %>
