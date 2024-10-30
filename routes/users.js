@@ -23,7 +23,6 @@ router
     users.login
   );
 
-router.get("/login");
 
 router.get("/logout", users.logout);
 
